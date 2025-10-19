@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sai | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Font Awesome for social icons and music icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Sai</div>
+        <ul>
+          <li><a href="#" class="nav-link active" data-slide="0">Home</a></li>
+          <li><a href="#" class="nav-link" data-slide="1">About Me</a></li>
+          <li><a href="#" class="nav-link" data-slide="2">Skills</a></li>
+          <li><a href="#" class="nav-link" data-slide="3">Achievements</a></li>
+          <li><a href="#" class="nav-link" data-slide="4">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Slider Wrapper -->
+    <main class="slider-wrapper">
+      <div class="slider-container" id="sliderContainer">
+        <!-- Slide 1: Home -->
+        <div class="slide active" data-slide="0">
+          <div class="main-content">
+            <div class="left-content">
+              <h1 class="slide-in-left">
+                Hi, It's <span class="logo-accent">Sai</span>
+              </h1>
+              <h2 class="slide-in-left delay-1">
+                <span class="desc-head">I'm an <span class="role-accent">Engineer</span></span>
+              </h2>
+              <p class="description slide-in-left delay-2">
+                I am a developer, designer, bookwriter, youtuber, leader and a business man who runs 3 companies, written 7 books, created multiple websites for freelancing and some of my own, made multiples video showing my many talents and 100 more things about me and a very passionate game developer with 5 games.
+              </p>
+              <div class="actions slide-in-left delay-3">
+                <div class="social-links">
+                  <a href="https://www.linkedin.com/in/sai-srinivas-667094321/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://github.com/Sai-Emani25" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                  <a href="https://www.instagram.com/solo.mon_18/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="https://x.com/mrshanmukha06" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <a href="#" class="hire-btn" id="hireMeBtn">Hire me</a>
+              </div>
+            </div>
+            <div class="profile-img-bg slide-in-center">
+              <img
+                src="image.png"
+                alt="Profile"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: About (Alternating, Scrollable, Transparent Section) -->
+        <div class="slide" data-slide="1">
+          <div class="main-content" style="justify-content: center; align-items: center;">
+            <section class="about-section">
+              <h2>About Me</h2>
+              <div class="about-rows-wrapper">
+                <div class="about-row">
+                  <div class="about-img"><img src="https://picsum.photos/id/1011/220/140" alt="About 1"></div>
+                  <div class="about-text">
+                    <p>I love travelling and knowing people as I am a great negotiator I tend to lean towards business and sales yet have a passion of helping people with my skills</p>
+                  </div>
+                </div>
+                <div class="about-row reverse">
+                  <div class="about-img"><img src="image copy 2.png" alt="About 2"></div>
+                  <div class="about-text">
+                    <p>When it comes to me, I never do anything without giving my 100 percent...I am a passionate man who treats friends, family and work the same way.</p>
+                  </div>
+                </div>
+                <div class="about-row">
+                  <div class="about-img"><img src="https://picsum.photos/id/1013/220/140" alt="About 3"></div>
+                  <div class="about-text">
+                    <p>My desire to help people had lead me to write books and make videos of my talent with app and websites to make another person's life easier</p>
+                  </div>
+                </div>
+                <div class="about-row reverse">
+                  <div class="about-img"><img src="https://picsum.photos/id/1014/220/140" alt="About 4"></div>
+                  <div class="about-text">
+                    <p>My passion for gaming comes from my childhood comfort of playing games after a long day at school which are memorable to this day. I want to build games that makes the childhood of this generation remarkable and amazing</p>
+                  </div>
+                </div>
+                <div class="about-row">
+                  <div class="about-img"><img src="https://picsum.photos/id/1015/220/140" alt="About 5"></div>
+                  <div class="about-text">
+                    <p>Finally coming to who I am, I am great at sales and technical thinking helping boost any company or project. I am a great team player guiding my fellow collegues to work efficiently. My coding skills are upto date and professionally done.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Slide 3: Skills (Three Columns, 7 Skills Each) -->
+        <div class="slide" data-slide="2">
+          <div class="main-content skills-main-content">
+            <section class="skills-section">
+              <div class="skills-col">
+                <h3>Designing</h3>
+                <div class="skills-list">
+                  <span class="skill-pill">UI/UX</span>
+                  <span class="skill-pill">Figma</span>
+                  <span class="skill-pill">Photoshop</span>
+                  <span class="skill-pill">Illustrator</span>
+                  <span class="skill-pill">Wireframing</span>
+                  <span class="skill-pill">Branding</span>
+                  <span class="skill-pill">Prototyping</span>
+                </div>
+              </div>
+              <div class="skills-col">
+                <h3>Programming</h3>
+                <div class="skills-list">
+                  <span class="skill-pill">JavaScript</span>
+                  <span class="skill-pill">Python</span>
+                  <span class="skill-pill">C++</span>
+                  <span class="skill-pill">HTML5</span>
+                  <span class="skill-pill">CSS3</span>
+                  <span class="skill-pill">React</span>
+                  <span class="skill-pill">Node.js</span>
+                </div>
+              </div>
+              <div class="skills-col">
+                <h3>Misc</h3>
+                <div class="skills-list">
+                  <span class="skill-pill">Teamwork</span>
+                  <span class="skill-pill">Public Speaking</span>
+                  <span class="skill-pill">Agile</span>
+                  <span class="skill-pill">Writing</span>
+                  <span class="skill-pill">Time Management</span>
+                  <span class="skill-pill">Editing</span>
+                  <span class="skill-pill">Research</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Slide 4: Achievements (15 images, modal with slider navigation) -->
+        <div class="slide" data-slide="3">
+          <div class="main-content achievements-main-content">
+            <div class="achievements-collage-container" id="achievementsCollageContainer">
+              <h1 class="slide-in-left">My <span class="logo-accent">Achievements</span></h1>
+              <div class="achievements-collage" id="achievementsCollage">
+                <img src="https://picsum.photos/seed/ach1/200/200" alt="Achievement 1"
+                  data-name="Achievement 1"
+                  data-desc="Description for Achievement 1">
+                <img src="https://picsum.photos/seed/ach2/200/200" alt="Achievement 2"
+                  data-name="Achievement 2"
+                  data-desc="Description for Achievement 2">
+                <img src="https://picsum.photos/seed/ach3/200/200" alt="Achievement 3"
+                  data-name="Achievement 3"
+                  data-desc="Description for Achievement 3">
+                <img src="https://picsum.photos/seed/ach4/200/200" alt="Achievement 4"
+                  data-name="Achievement 4"
+                  data-desc="Description for Achievement 4">
+                <img src="https://picsum.photos/seed/ach5/200/200" alt="Achievement 5"
+                  data-name="Achievement 5"
+                  data-desc="Description for Achievement 5">
+                <img src="https://picsum.photos/seed/ach6/200/200" alt="Achievement 6"
+                  data-name="Achievement 6"
+                  data-desc="Description for Achievement 6">
+                <img src="https://picsum.photos/seed/ach7/200/200" alt="Achievement 7"
+                  data-name="Achievement 7"
+                  data-desc="Description for Achievement 7">
+                <img src="https://picsum.photos/seed/ach8/200/200" alt="Achievement 8"
+                  data-name="Achievement 8"
+                  data-desc="Description for Achievement 8">
+                <img src="https://picsum.photos/seed/ach9/200/200" alt="Achievement 9"
+                  data-name="Achievement 9"
+                  data-desc="Description for Achievement 9">
+                <img src="https://picsum.photos/seed/ach10/200/200" alt="Achievement 10"
+                  data-name="Achievement 10"
+                  data-desc="Description for Achievement 10">
+                <img src="https://picsum.photos/seed/ach11/200/200" alt="Achievement 11"
+                  data-name="Achievement 11"
+                  data-desc="Description for Achievement 11">
+                <img src="https://picsum.photos/seed/ach12/200/200" alt="Achievement 12"
+                  data-name="Achievement 12"
+                  data-desc="Description for Achievement 12">
+                <img src="https://picsum.photos/seed/ach13/200/200" alt="Achievement 13"
+                  data-name="Achievement 13"
+                  data-desc="Description for Achievement 13">
+                <img src="https://picsum.photos/seed/ach14/200/200" alt="Achievement 14"
+                  data-name="Achievement 14"
+                  data-desc="Description for Achievement 14">
+                <img src="https://picsum.photos/seed/ach15/200/200" alt="Achievement 15"
+                  data-name="Achievement 15"
+                  data-desc="Description for Achievement 15">
+              </div>
+              <!-- Modal overlay for image preview with slider navigation -->
+              <div id="achModal" class="ach-modal">
+                <button class="ach-modal-nav ach-modal-prev" id="achModalPrev" aria-label="Previous">&#10094;</button>
+                <div class="ach-modal-content">
+                  <span class="ach-modal-close" id="achModalClose">&times;</span>
+                  <img id="achModalImg" src="" alt="">
+                  <div class="ach-modal-caption">
+                    <div id="achModalName" class="ach-modal-name"></div>
+                    <div id="achModalDesc" class="ach-modal-desc"></div>
+                  </div>
+                </div>
+                <button class="ach-modal-nav ach-modal-next" id="achModalNext" aria-label="Next">&#10095;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Contact -->
+        <div class="slide" data-slide="4">
+          <div class="main-content">
+            <section class="contact-section">
+              <h1>
+                Contact <span class="accent">Me</span>
+              </h1>
+              <h2>
+                Let's <span class="accent">Connect!</span>
+              </h2>
+              <form class="contact-form"
+                    id="emailForm"
+                    method="GET"
+                    action="">
+                <div class="form-row">
+                  <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-row">
+                  <textarea name="message" id="message" placeholder="Your Message" rows="4" required></textarea>
+                </div>
+                <div class="form-row" style="justify-content: flex-end;">
+                  <button type="submit" class="hire-btn small-btn">Send Email</button>
+                </div>
+              </form>
+              <div class="contact-social">
+                <a href="https://www.linkedin.com/in/sai-srinivas-667094321/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Sai-Emani25" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/solo.mon_18/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/mrshanmukha06" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Stats Row -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat">
+        <span class="stat-number">4+</span>
+        <span class="stat-label"><b>Years of</b><br /><b>Experience</b></span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">7+</span>
+        <span class="stat-label"><b>Technical</b><br /><b>Skills</b></span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">50+</span>
+        <span class="stat-label"><b>Projects</b><br /><b>Completed</b></span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">80+</span>
+        <span class="stat-label"><b>Satisfied</b><br /><b>Clients</b></span>
+      </div>
+    </div>
+  </div>
+  <!-- THEME TOGGLE BUTTON (bottom right, outside .container) -->
+  <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+    <span id="themeToggleIcon" class="fa fa-moon"></span>
+  </button>
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
