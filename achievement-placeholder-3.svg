@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#17252a" />
+      <stop offset="100%" stop-color="#e07a6a" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)" rx="48" />
+  <path d="M0 590 C150 500 250 700 420 620 C560 555 650 420 800 520 L800 800 L0 800 Z" fill="#ffffff16" />
+  <text x="72" y="350" fill="#fff" font-family="Montserrat, Arial, sans-serif" font-size="72" font-weight="700">Achievement</text>
+  <text x="72" y="430" fill="#ffd9d2" font-family="Montserrat, Arial, sans-serif" font-size="72" font-weight="700">Placeholder 03</text>
+</svg>

@@ -5,237 +5,88 @@ class PortfolioSlider {
     this.navLinks = document.querySelectorAll('.nav-link');
     this.sliderContainer = document.getElementById('sliderContainer');
     this.totalSlides = this.slides.length;
-    this.container = document.querySelector('.container');
     this.statsRow = document.getElementById('statsRow');
-    this.init();
-  }
-
-  init() {
     this.bindEvents();
     this.showSlide(0);
-
-    // Contact form mailto logic (Subject & Message only)
-    const emailForm = document.getElementById('emailForm');
-    if (emailForm) {
-      emailForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        // Updated mailto address
-        const mailto = `mailto:ssshanmukha.emani@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-        window.location.href = mailto;
-      });
-    }s
-
-    // Achievements image modal logic
-    const collage = document.getElementById('achievementsCollage');
-    const modal = document.getElementById('achModal');
-    const modalImg = document.getElementById('achModalImg');
-    const modalName = document.getElementById('achModalName');
-    const modalDesc = document.getElementById('achModalDesc');
-    const modalClose = document.getElementById('achModalClose');
-
-    if (collage && modal && modalImg && modalName && modalDesc && modalClose) {
-      collage.addEventListener('click', function(e) {
-        const img = e.target.closest('img');
-        if (!img) return;
-        modal.classList.add('open');
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        modalName.textContent = img.getAttribute('data-name') || img.alt || '';
-        modalDesc.textContent = img.getAttribute('data-desc') || '';
-      });
-              // 1. Get all required elements
-        const collage = document.getElementById('achievementsCollage');
-        const modal = document.getElementById('achModal');
-        const modalImg = document.getElementById('achModalImg');
-        const modalName = document.getElementById('achModalName');
-        const modalDesc = document.getElementById('achModalDesc');
-        const modalClose = document.getElementById('achModalClose');
-        const modalPrev = document.getElementById('achModalPrev');
-        const modalNext = document.getElementById('achModalNext');
-
-        let achImages = [];
-        let currentAchIndex = 0;
-
-        // 2. Function to show modal for a specific image
-        function showAchModal(index) {
-            if (!achImages.length) return;
-            const img = achImages[index];
-            modal.classList.add('open');
-            modalImg.src = img.src;
-            modalImg.alt = img.alt;
-            modalName.textContent = img.getAttribute('data-name') || img.alt || '';
-            modalDesc.textContent = img.getAttribute('data-desc') || '';
-            currentAchIndex = index;
-        }
-
-        // 3. Setup event listeners after DOM is ready
-        if (
-            collage && modal && modalImg &&
-            modalName && modalDesc &&
-            modalClose && modalPrev && modalNext
-        ) {
-            achImages = Array.from(collage.querySelectorAll('img'));
-
-            // Open modal on image click
-            collage.addEventListener('click', function(e) {
-                const img = e.target.closest('img');
-                if (!img) return;
-                const idx = achImages.indexOf(img);
-                if (idx !== -1) showAchModal(idx);
-            });
-
-            // Previous image button
-            modalPrev.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (!achImages.length) return;
-                let idx = (currentAchIndex - 1 + achImages.length) % achImages.length;
-                showAchModal(idx);
-            });
-
-            // Next image button
-            modalNext.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (!achImages.length) return;
-                let idx = (currentAchIndex + 1) % achImages.length;
-                showAchModal(idx);
-            });
-
-            // Close modal
-            modalClose.addEventListener('click', function() {
-                modal.classList.remove('open');
-                modalImg.src = '';
-                modalName.textContent = '';
-                modalDesc.textContent = '';
-            });
-
-            // Click outside modal content to close
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('open');
-                    modalImg.src = '';
-                    modalName.textContent = '';
-                    modalDesc.textContent = '';
-                }
-            });
-
-            // Keyboard navigation (optional)
-            document.addEventListener('keydown', function(e) {
-                if (!modal.classList.contains('open')) return;
-                if (e.key === 'Escape') {
-                    modal.classList.remove('open');
-                    modalImg.src = '';
-                    modalName.textContent = '';
-                    modalDesc.textContent = '';
-                } else if (e.key === 'ArrowLeft') {
-                    modalPrev.click();
-                } else if (e.key === 'ArrowRight') {
-                    modalNext.click();
-                }
-            });
-        }
-
-
-      // Close modal on close button or outside click
-      modalClose.addEventListener('click', function() {
-        modal.classList.remove('open');
-        modalImg.src = '';
-        modalName.textContent = '';
-        modalDesc.textContent = '';
-      });
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          modal.classList.remove('open');
-          modalImg.src = '';
-          modalName.textContent = '';
-          modalDesc.textContent = '';
-        }
-      });
-      // Optional: close modal on ESC key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('open')) {
-          modal.classList.remove('open');
-          modalImg.src = '';
-          modalName.textContent = '';
-          modalDesc.textContent = '';
-        }
-      });
-    }
   }
 
   bindEvents() {
-    // Navigation links
     this.navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const slideIndex = parseInt(link.dataset.slide);
-        if (slideIndex < this.totalSlides) {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const slideIndex = Number.parseInt(link.dataset.slide, 10);
+        if (!Number.isNaN(slideIndex)) {
           this.goToSlide(slideIndex);
         }
       });
     });
 
-    // "Hire me" button scrolls to Contact slide
     const hireMeBtn = document.getElementById('hireMeBtn');
     if (hireMeBtn) {
-      hireMeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.goToSlide(4); // Contact slide
+      hireMeBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        this.goToSlide(4);
       });
     }
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
         this.prevSlide();
-      } else if (e.key === 'ArrowRight') {
+      } else if (event.key === 'ArrowRight') {
         this.nextSlide();
       }
     });
 
-    // Touch and mouse/trackpad swipe support
     let startX = null;
-    let isDragging = false;
+    let dragging = false;
 
-    const start = (clientX) => {
+    const beginSwipe = (clientX) => {
       startX = clientX;
-      isDragging = true;
+      dragging = true;
     };
 
-    const end = (clientX) => {
-      if (!isDragging || startX === null) return;
-      const threshold = 50;
-      const diff = startX - clientX;
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
+    const endSwipe = (clientX) => {
+      if (!dragging || startX === null) {
+        return;
+      }
+
+      const swipeDistance = startX - clientX;
+      if (Math.abs(swipeDistance) > 50) {
+        if (swipeDistance > 0) {
           this.nextSlide();
         } else {
           this.prevSlide();
         }
       }
-      isDragging = false;
+
+      dragging = false;
       startX = null;
     };
 
-    // Touch events
-    this.sliderContainer.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) start(e.touches[0].clientX);
-    });
-    this.sliderContainer.addEventListener('touchend', (e) => {
-      if (e.changedTouches.length === 1) end(e.changedTouches[0].clientX);
+    this.sliderContainer.addEventListener('touchstart', (event) => {
+      if (event.touches.length === 1) {
+        beginSwipe(event.touches[0].clientX);
+      }
     });
 
-    // Mouse events (for trackpad/drag)
-    this.sliderContainer.addEventListener('mousedown', (e) => {
-      start(e.clientX);
+    this.sliderContainer.addEventListener('touchend', (event) => {
+      if (event.changedTouches.length === 1) {
+        endSwipe(event.changedTouches[0].clientX);
+      }
     });
-    this.sliderContainer.addEventListener('mouseup', (e) => {
-      end(e.clientX);
+
+    this.sliderContainer.addEventListener('mousedown', (event) => {
+      beginSwipe(event.clientX);
     });
-    this.sliderContainer.addEventListener('mouseleave', (e) => {
-      if (isDragging) end(e.clientX);
+
+    this.sliderContainer.addEventListener('mouseup', (event) => {
+      endSwipe(event.clientX);
+    });
+
+    this.sliderContainer.addEventListener('mouseleave', (event) => {
+      if (dragging) {
+        endSwipe(event.clientX);
+      }
     });
   }
 
@@ -243,53 +94,32 @@ class PortfolioSlider {
     if (index === this.currentSlide || index < 0 || index >= this.totalSlides) {
       return;
     }
+
     this.currentSlide = index;
     this.showSlide(index);
   }
 
   showSlide(index) {
-    // Update slider container position
     const translateX = -(index * (100 / this.totalSlides));
     this.sliderContainer.style.transform = `translateX(${translateX}%)`;
 
-    // Update active states
-    this.updateActiveStates(index);
+    this.slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle('active', slideIndex === index);
+    });
 
-    // Show stats row only on Home (slide 0)
+    this.navLinks.forEach((link) => {
+      link.classList.toggle('active', Number.parseInt(link.dataset.slide, 10) === index);
+    });
+
     if (this.statsRow) {
-      if (index === 0) {
-        this.statsRow.style.display = 'flex';
-      } else {
-        this.statsRow.style.display = 'none';
-      }
+      this.statsRow.style.display = index === 0 ? 'flex' : 'none';
     }
 
-    // Trigger animations
-    setTimeout(() => {
-      this.triggerSlideAnimations(index);
-    }, 100);
-  }
-
-  updateActiveStates(index) {
-    // Update slides
-    this.slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
-
-    // Update navigation links
-    this.navLinks.forEach((link) => {
-      const slideIndex = parseInt(link.dataset.slide);
-      link.classList.toggle('active', slideIndex === index);
-    });
-  }
-
-  triggerSlideAnimations(index) {
-    const currentSlideElement = this.slides[index];
-    const animatedElements = currentSlideElement.querySelectorAll('.slide-in-left, .slide-in-right');
+    const animatedElements = this.slides[index].querySelectorAll('.slide-in-left, .slide-in-right');
     animatedElements.forEach((element) => {
       element.style.animation = 'none';
-      element.offsetHeight; // Trigger reflow
-      element.style.animation = null;
+      element.offsetHeight;
+      element.style.animation = '';
     });
   }
 
@@ -304,114 +134,270 @@ class PortfolioSlider {
   }
 }
 
-// Initialize slider when DOM is loaded
+class AchievementsModal {
+  constructor() {
+    this.collage = document.getElementById('achievementsCollage');
+    this.modal = document.getElementById('achModal');
+    this.modalImg = document.getElementById('achModalImg');
+    this.modalName = document.getElementById('achModalName');
+    this.modalDesc = document.getElementById('achModalDesc');
+    this.modalClose = document.getElementById('achModalClose');
+    this.modalPrev = document.getElementById('achModalPrev');
+    this.modalNext = document.getElementById('achModalNext');
+    this.cards = this.collage ? Array.from(this.collage.querySelectorAll('.achievement-card')) : [];
+    this.currentIndex = 0;
+
+    if (!this.collage || !this.modal || !this.modalImg || !this.modalName || !this.modalDesc || !this.modalClose || !this.modalPrev || !this.modalNext) {
+      return;
+    }
+
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.collage.addEventListener('click', (event) => {
+      const selectedCard = event.target.closest('.achievement-card');
+      if (!selectedCard) {
+        return;
+      }
+
+      const imageIndex = this.cards.indexOf(selectedCard);
+      if (imageIndex >= 0) {
+        this.open(imageIndex);
+      }
+    });
+
+    this.modalPrev.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.open((this.currentIndex - 1 + this.cards.length) % this.cards.length);
+    });
+
+    this.modalNext.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.open((this.currentIndex + 1) % this.cards.length);
+    });
+
+    this.modalClose.addEventListener('click', () => this.close());
+
+    this.modal.addEventListener('click', (event) => {
+      if (event.target === this.modal) {
+        this.close();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!this.modal.classList.contains('open')) {
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        this.close();
+      } else if (event.key === 'ArrowLeft') {
+        this.modalPrev.click();
+      } else if (event.key === 'ArrowRight') {
+        this.modalNext.click();
+      }
+    });
+  }
+
+  open(index) {
+    if (!this.cards.length) {
+      return;
+    }
+
+    const card = this.cards[index];
+    const image = card.querySelector('img');
+    this.currentIndex = index;
+    this.modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    this.modalImg.src = image.src;
+    this.modalImg.alt = image.alt;
+    this.modalName.textContent = card.getAttribute('data-name') || image.alt || '';
+    this.modalDesc.textContent = card.getAttribute('data-desc') || '';
+  }
+
+  close() {
+    this.modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    this.modalImg.src = '';
+    this.modalImg.alt = '';
+    this.modalName.textContent = '';
+    this.modalDesc.textContent = '';
+  }
+}
+
+class GitHubProjects {
+  constructor(username) {
+    this.username = username;
+    this.projectsGrid = document.getElementById('projectsGrid');
+    this.apiUrl = `https://api.github.com/users/${username}/repos?per_page=100&sort=updated&direction=desc`;
+    this.starredProjects = new Set(['huslr', 'shudh', 'namma-traffic-ai']);
+
+    if (this.projectsGrid) {
+      this.load();
+    }
+  }
+
+  async load() {
+    try {
+      const response = await fetch(this.apiUrl, {
+        headers: {
+          Accept: 'application/vnd.github+json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub request failed with ${response.status}`);
+      }
+
+      const repositories = await response.json();
+      const visibleRepos = repositories.filter((repo) => !repo.fork);
+      this.renderProjects(visibleRepos);
+    } catch (error) {
+      this.projectsGrid.innerHTML = `
+        <div class="projects-state">
+          I couldn't load GitHub projects right now.
+          <a href="https://github.com/${this.username}?tab=repositories" target="_blank" rel="noopener">View them on GitHub</a>
+        </div>
+      `;
+      console.error(error);
+    }
+  }
+
+  renderProjects(repositories) {
+    if (!repositories.length) {
+      this.projectsGrid.innerHTML = `
+        <div class="projects-state">
+          No public repositories found yet.
+        </div>
+      `;
+      return;
+    }
+
+    const cards = repositories.map((repo) => {
+      const tags = this.getTags(repo);
+      const isStarred = this.starredProjects.has(repo.name.toLowerCase());
+      const tagsMarkup = tags.length
+        ? `
+          <div class="project-tags">
+            ${tags.map((tag) => `<span class="project-tag">${this.escapeHtml(tag)}</span>`).join('')}
+          </div>
+        `
+        : '';
+
+      return `
+        <article class="project-card${isStarred ? ' project-card-starred' : ''}">
+          <img
+            class="project-image"
+            src="https://repository-images.githubusercontent.com/${repo.id}"
+            alt="${this.escapeHtml(repo.name)} project preview"
+            loading="lazy"
+          />
+          <div class="project-card-body">
+            <div class="project-title-row">
+              <div class="project-heading">
+                <h4>${this.escapeHtml(repo.name)}</h4>
+                ${isStarred ? '<span class="project-featured-badge">★ Featured</span>' : ''}
+              </div>
+              ${tagsMarkup}
+            </div>
+            <p class="project-description">${this.escapeHtml(repo.description || 'Project repository on GitHub.')}</p>
+            <div class="project-links">
+              <a href="${repo.html_url}" target="_blank" rel="noopener">GitHub Repo</a>
+              ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener">Live Site</a>` : ''}
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    this.projectsGrid.innerHTML = cards;
+  }
+
+  getTags(repo) {
+    const tags = [];
+
+    if (repo.language) {
+      tags.push(repo.language);
+    }
+
+    if (Array.isArray(repo.topics) && repo.topics.length) {
+      tags.push(...repo.topics.slice(0, 3));
+    }
+
+    if (!tags.length && repo.homepage) {
+      tags.push('Deployed');
+    }
+
+    return tags.slice(0, 4);
+  }
+
+  escapeHtml(value) {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+}
+
+function initContactForm() {
+  const emailForm = document.getElementById('emailForm');
+  if (!emailForm) {
+    return;
+  }
+
+  emailForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const mailto = `mailto:ssshanmukha.emani@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailto;
+  });
+}
+
+function initThemeToggle() {
+  const themeToggle = document.getElementById('themeToggle');
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+  if (!themeToggle || !themeToggleIcon) {
+    return;
+  }
+
+  const setTheme = (theme) => {
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+      themeToggleIcon.classList.remove('fa-moon');
+      themeToggleIcon.classList.add('fa-sun');
+      themeToggleIcon.setAttribute('title', 'Switch to dark mode');
+    } else {
+      document.body.classList.remove('light-mode');
+      themeToggleIcon.classList.remove('fa-sun');
+      themeToggleIcon.classList.add('fa-moon');
+      themeToggleIcon.setAttribute('title', 'Switch to light mode');
+    }
+
+    localStorage.setItem('theme', theme);
+  };
+
+  let savedTheme = localStorage.getItem('theme');
+  if (!savedTheme) {
+    savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  setTheme(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.body.classList.contains('light-mode');
+    setTheme(isLight ? 'dark' : 'light');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   new PortfolioSlider();
-});
-const collage = document.getElementById('achievementsCollage');
-const modal = document.getElementById('achModal');
-const modalImg = document.getElementById('achModalImg');
-const modalName = document.getElementById('achModalName');
-const modalDesc = document.getElementById('achModalDesc');
-const modalClose = document.getElementById('achModalClose');
-const modalPrev = document.getElementById('achModalPrev');
-const modalNext = document.getElementById('achModalNext');
-
-let achImages = [];
-let currentAchIndex = 0;
-
-function showAchModal(index) {
-  if (!achImages.length) return;
-  const img = achImages[index];
-  modal.classList.add('open');
-  modalImg.src = img.src;
-  modalImg.alt = img.alt;
-  modalName.textContent = img.getAttribute('data-name') || img.alt || '';
-  modalDesc.textContent = img.getAttribute('data-desc') || '';
-  currentAchIndex = index;
-}
-
-if (collage && modal && modalImg && modalName && modalDesc && modalClose && modalPrev && modalNext) {
-  achImages = Array.from(collage.querySelectorAll('img'));
-
-  collage.addEventListener('click', function(e) {
-    const img = e.target.closest('img');
-    if (!img) return;
-    const idx = achImages.indexOf(img);
-    if (idx !== -1) showAchModal(idx);
-  });
-
-  modalPrev.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (!achImages.length) return;
-    let idx = (currentAchIndex - 1 + achImages.length) % achImages.length;
-    showAchModal(idx);
-  });
-  modalNext.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (!achImages.length) return;
-    let idx = (currentAchIndex + 1) % achImages.length;
-    showAchModal(idx);
-  });
-
-  modalClose.addEventListener('click', function() {
-    modal.classList.remove('open');
-    modalImg.src = '';
-    modalName.textContent = '';
-    modalDesc.textContent = '';
-  });
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-      modal.classList.remove('open');
-      modalImg.src = '';
-      modalName.textContent = '';
-      modalDesc.textContent = '';
-    }
-  });
-  document.addEventListener('keydown', function(e) {
-    if (!modal.classList.contains('open')) return;
-    if (e.key === 'Escape') {
-      modal.classList.remove('open');
-      modalImg.src = '';
-      modalName.textContent = '';
-      modalDesc.textContent = '';
-    } else if (e.key === 'ArrowLeft') {
-      modalPrev.click();
-    } else if (e.key === 'ArrowRight') {
-      modalNext.click();
-    }
-  });
-}
-const themeToggle = document.getElementById('themeToggle');
-const themeToggleIcon = document.getElementById('themeToggleIcon');
-
-// Helper: Set theme and icon
-function setTheme(theme) {
-  if (theme === 'light') {
-    document.body.classList.add('light-mode');
-    themeToggleIcon.classList.remove('fa-moon');
-    themeToggleIcon.classList.add('fa-sun');
-    themeToggleIcon.setAttribute('title', 'Switch to dark mode');
-  } else {
-    document.body.classList.remove('light-mode');
-    themeToggleIcon.classList.remove('fa-sun');
-    themeToggleIcon.classList.add('fa-moon');
-    themeToggleIcon.setAttribute('title', 'Switch to light mode');
-  }
-  localStorage.setItem('theme', theme);
-}
-
-// On load: restore theme
-(function(){
-  let saved = localStorage.getItem('theme');
-  if (!saved) {
-    saved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-  setTheme(saved);
-})();
-
-// Toggle on click
-themeToggle.addEventListener('click', () => {
-  const isLight = document.body.classList.contains('light-mode');
-  setTheme(isLight ? 'dark' : 'light');
+  new AchievementsModal();
+  new GitHubProjects('Sai-Emani25');
+  initContactForm();
+  initThemeToggle();
 });
